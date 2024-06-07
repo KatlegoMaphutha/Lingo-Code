@@ -8,7 +8,7 @@ interface DBCredentials {
 const config: Config = {
   schema: "./db/schema.ts",
   out: "./drizzle",
-  driver: "pg",
+  driver: "d1",
   dbCredentials: {
     connectionString: process.env.DATABASE_URL!,
   } as DBCredentials, // Ensure type casting to match expected type
