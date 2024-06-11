@@ -1,5 +1,3 @@
-import { Config } from 'drizzle-orm';
-
 interface DBCredentials {
   wranglerConfigPath: string;
   dbName: string;
@@ -12,11 +10,12 @@ const dbCredentials: DBCredentials = {
   // Additional properties here if needed
 };
 
-const config: Config = {
+const config = {
   driver: "d1",
   dbCredentials, // Correctly typed credentials object
-  // Add connectionString here if it's part of the Config but not dbCredentials
-  connectionString: process.env.DATABASE_URL!,
+  // Add connectionString here if it's part of the expected configuration
+  // You may remove this if not required
+  // connectionString: process.env.DATABASE_URL!,
 };
 
 export default config;
