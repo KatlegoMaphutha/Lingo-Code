@@ -1,21 +1,22 @@
-import "dotenv/config";
-import type { Config } from "drizzle-kit";
+import { Config } from 'drizzle-orm';
 
-// Define the DBCredentials interface with all required properties
 interface DBCredentials {
-  connectionString: string;
-  // Add any other properties if required by the drizzle-kit library
-  // e.g., host?: string; port?: number; username?: string; password?: string;
+  wranglerConfigPath: string;
+  dbName: string;
+  // Include any additional properties if required by the type
 }
 
+const dbCredentials: DBCredentials = {
+  wranglerConfigPath: process.env.WRANGLER_CONFIG_PATH!,
+  dbName: process.env.DB_NAME!,
+  // Additional properties here if needed
+};
+
 const config: Config = {
-  schema: "./db/schema.ts",
-  out: "./drizzle",
   driver: "d1",
-  dbCredentials: {
-    connectionString: process.env.DATABASE_URL!,
-    // Include any additional properties if necessary
-  } satisfies DBCredentials, // Ensure type casting to match expected type
+  dbCredentials, // Correctly typed credentials object
+  // Add connectionString here if it's part of the Config but not dbCredentials
+  connectionString: process.env.DATABASE_URL!,
 };
 
 export default config;
